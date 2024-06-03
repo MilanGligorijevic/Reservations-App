@@ -18,10 +18,9 @@ function ReservationContainer({ openingHours, closingHours, localName }: Reserva
     let { localId } = useParams();
     const [guestsNumber, setGuestsNumber] = useState<number>(2);
     const [reservationDate, setReservationDate] = useState<dayjs.Dayjs | null>(dayjs(new Date()));
-    const [reservationTime, setReservationTime] = useState<string>(openingHours);
+    const [reservationTime, setReservationTime] = useState<string>((new Date().getHours() + 1).toString() + ":00");
     const workingHours = getWorkingHours(parseInt(openingHours), parseInt(closingHours));
     const [reservedHours, setReservedHours] = useState<Array<string>>();
-
 
     useEffect(() => {
         async function fetchReservedHours() {
@@ -53,9 +52,9 @@ function ReservationContainer({ openingHours, closingHours, localName }: Reserva
         <div className='h-80 min-w-[19rem] shadow rounded flex flex-col items-center gap-5 py-5'>
             <ReservationGuests guestsNumber={guestsNumber} addNumOfGuests={addNumOfGuests} subtractNumOfGuests={subtractNumOfGuests} />
             <ReservationDate reservationDate={reservationDate} handleReservationDate={(newValue: any) => handleReservationDate(newValue)} />
-            <ReservationTime handleReservationTime={(newValue: any) => handleReservationTime(newValue)} reservationTime={reservationTime} reservedHours={reservedHours} workingHours={workingHours} />
+            <ReservationTime handleReservationTime={(newValue: any) => handleReservationTime(newValue)} reservationTime={reservationTime} reservationDate={reservationDate} reservedHours={reservedHours} workingHours={workingHours} />
             <Link to={`/reservation/${localId}/${localName}/${guestsNumber}/${reservationDate?.format('DD MMMM YYYY')}/${reservationTime}`}>
-                <button className='rounded-3xl bg-custom-orange h-14 w-64 text-white text-lg hover:bg-[#eb6902]'>Book</button>
+                <button className='rounded bg-custom-orange h-14 w-64 text-white text-lg hover:bg-[#eb6902]'>Book</button>
             </Link>
         </div>
     )

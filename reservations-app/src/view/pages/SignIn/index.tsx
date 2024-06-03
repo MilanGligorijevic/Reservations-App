@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { motion } from 'framer-motion';
@@ -17,7 +17,8 @@ function SignIn() {
     const currentUser = useCurrentUser();
     const [errorState, setErrorState] = useState<string>('');
     const [showPassword, setShowPassword] = React.useState(false);
-    const navigateToHomePage = useNavigate();
+    const navigateUser = useNavigate();
+    const location = useLocation();
 
 
     function handleCredentials(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -41,7 +42,7 @@ function SignIn() {
     function signInUser(id: string, email: string | null, firstName: string | null) {
         const user = { userId: id, userEmail: email, firstName: firstName };
         currentUser.userDispatch({ type: 'SET_USER', payload: user });
-        navigateToHomePage('/');
+        navigateUser(location.state ? location.state.pathName : "/");
         console.log(currentUser.user);
     }
 

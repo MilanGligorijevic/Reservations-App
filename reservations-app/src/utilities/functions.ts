@@ -7,4 +7,9 @@ function getWorkingHours(opening: number, closing: number) {
   return hours;
 }
 
-export { getWorkingHours };
+function isValidPhoneNumber(input: string) {
+  const regex = /^[+]?\d+$/;
+  return regex.test(input);
+}
+
+export { getWorkingHours, isValidPhoneNumber };

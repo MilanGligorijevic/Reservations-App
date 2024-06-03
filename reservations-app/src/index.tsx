@@ -16,6 +16,7 @@ import { UserContextProvider } from './context/userContext';
 import { FavoriteLocalsContextProvider } from './context/favoriteLocalsContext';
 import UserProfile from './view/pages/UserProfile';
 import { UserReservationsContextProvider } from './context/usersReservationsContext';
+import AddLocalPage from './view/pages/AddLocalPage';
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/userProfile",
         element: <UserProfile />
+      },
+      {
+        path: "/addLocal",
+        element: <AddLocalPage />
       }
     ]
   }

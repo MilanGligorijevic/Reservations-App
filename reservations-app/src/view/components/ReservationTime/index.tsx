@@ -1,14 +1,21 @@
 import { FormControl, MenuItem, Select } from '@mui/material'
+import dayjs, { Dayjs } from 'dayjs'
 import React from 'react'
 
 interface ReservationTimeProps {
     reservationTime: string,
+    reservationDate: Dayjs | null,
     handleReservationTime: Function,
     workingHours?: number[],
     reservedHours?: string[] | undefined,
 }
 
-function ReservationTime({ reservationTime, handleReservationTime, workingHours, reservedHours }: ReservationTimeProps) {
+function ReservationTime({ reservationTime, reservationDate, handleReservationTime, workingHours, reservedHours }: ReservationTimeProps) {
+
+    function reservationDateIsToday() {
+        return reservationDate?.format('DD-MM-YYYY') === dayjs(new Date()).format('DD-MM-YYYY') ? true : false;
+    }
+
     return (
         <FormControl
             sx={{
@@ -44,7 +51,7 @@ function ReservationTime({ reservationTime, handleReservationTime, workingHours,
                             sx={{
                                 fontFamily: 'Poppins',
                             }}
-                            disabled={(reservedHours?.includes(time + ':00') ? true : false) || (time <= new Date().getHours())}
+                            disabled={(reservedHours?.includes(time + ':00') ? true : false) || (reservationDateIsToday() && time <= new Date().getHours())}
                             value={time + ':00'}>
                             {time + ":00"}
                         </MenuItem>

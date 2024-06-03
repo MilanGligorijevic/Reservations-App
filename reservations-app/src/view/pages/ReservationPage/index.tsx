@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import { Box, TextField } from '@mui/material'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { GuestIcon } from '../../../assets/svg/GuestIcon'
 import { DateIcon } from '../../../assets/svg/DateIcon'
 import { TimeIcon } from '@mui/x-date-pickers/icons'
@@ -23,7 +23,9 @@ function ReservationPage() {
     const [phoneNumber, setPhoneNumber] = useState<string>("1234567");
     const currentUser = useCurrentUser();
     const usersReservation = useUserReservations();
-    const navigateToHomePage = useNavigate();
+    const navigateUser = useNavigate();
+    const pathLocation = useLocation();
+
 
     function bookReservation() {
         if (localId && localName && guestsNumber && reservationDate && reservationTime) {
@@ -41,7 +43,7 @@ function ReservationPage() {
                 type: 'ADD_USER_RESERVATION',
                 payload: { localId, localName, reservationData }
             });
-            navigateToHomePage('/');
+            navigateUser('/');
         } else {
             throw new Error("Reservation failed")
         }
@@ -63,6 +65,13 @@ function ReservationPage() {
         setPhoneNumber(e.target.value);
     }
 
+    function redirectToSignIn() {
+        navigateUser('/signIn', { state: { pathName: pathLocation.pathname } });
+    }
+
+    function redirectToSignUp() {
+        navigateUser('/signUp', { state: { pathName: pathLocation.pathname } });
+    }
 
     return (
         <>
@@ -77,7 +86,7 @@ function ReservationPage() {
                             :
                             <h2 className='font-medium text-lg mt-5 mb-4'>Your reservation details</h2>}
                         {!currentUser.user && <div className='text-base mt-2 mb-4'>
-                            <p><Link to="/signIn" className='text-custom-orange'>Sign in</Link> to make things quicker or <Link to="/signUp" className='text-custom-orange'>Sign up</Link> to create an account</p>
+                            <p><button className='text-custom-orange' onClick={redirectToSignIn}>Sign in</button> to make things quicker or <button className='text-custom-orange' onClick={redirectToSignUp}>Sign up</button> to create an account</p>
                         </div>}
                         {/* razmotriti prebacivanje ovog koda u zasebne komponente */}
                         <Box

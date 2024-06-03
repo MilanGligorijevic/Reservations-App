@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import ReservationDate from '../ReservationDate'
 import dayjs from 'dayjs';
 import ReservationTime from '../ReservationTime';
-import { SelectChangeEvent, duration } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material';
 import { getWorkingHours } from '../../../utilities/functions';
 import ReservationGuests from '../ReservationGuests';
 import ReservationLocation from '../ReservationLocation';
 import { SearchIcon } from '../../../assets/svg/SearchIcon';
-import { easeIn, easeInOut, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 function HomePageReservationBar() {
 
@@ -62,7 +62,7 @@ function HomePageReservationBar() {
         <motion.div className='w-9/12 flex p-5 shadow flex justify-around items-center rounded' variants={reservationBarVariants} initial="hidden" animate="animate">
             <ReservationLocation handleReservationLocation={(newValue: any) => handleReservationLocation(newValue)} reservationLocation={reservationLocation} locationOptions={locationOptions} />
             <ReservationDate reservationDate={reservationDate} handleReservationDate={(newValue: any) => handleReservationDate(newValue)} />
-            <ReservationTime reservationTime={reservationTime} handleReservationTime={(newValue: any) => handleReservationTime(newValue)} workingHours={workingHours} />
+            <ReservationTime reservationTime={reservationTime} reservationDate={reservationDate} handleReservationTime={(newValue: any) => handleReservationTime(newValue)} workingHours={workingHours} />
             <ReservationGuests guestsNumber={guestsNumber} addNumOfGuests={addNumOfGuests} subtractNumOfGuests={subtractNumOfGuests} />
             <button>
                 <SearchIcon />

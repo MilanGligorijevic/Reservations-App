@@ -135,6 +135,14 @@ async function getSingleLocalData(localId: string | undefined) {
   }
 }
 
+//ADMIN funkcija za dodavanje novog lokala u bazu
+async function addNewLocalToFirebase(newLocal: Local) {
+  const localsRef = doc(db, "locals", newLocal.id);
+  await setDoc(localsRef, {
+    ...newLocal,
+  });
+}
+
 // upisati prave podatke i dodeliti unikatni ID rezervaciji
 async function makeLocalReservation(
   localId: string | undefined,
@@ -262,4 +270,5 @@ export {
   getSingleUser,
   addUsersReservation,
   getUsersReservations,
+  addNewLocalToFirebase,
 };

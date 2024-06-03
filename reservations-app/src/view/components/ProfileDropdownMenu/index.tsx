@@ -123,7 +123,7 @@ function ProfileDropdownMenu({ handleSignOut }: ProfileDropdownMenuProps) {
                                         <MenuItem sx={{ fontFamily: "Poppins" }} onClick={openProfileInfo}>Profile</MenuItem>
                                         <MenuItem sx={{ fontFamily: "Poppins" }} onClick={openProfileReservations}>My reservations</MenuItem>
                                         <MenuItem sx={{ fontFamily: "Poppins", marginBottom: 1 }} onClick={openProfileFavorites}>Favorites</MenuItem>
-                                        <MenuItem sx={{ fontFamily: "Poppins" }} onClick={() => handleSignOut()}>Logout</MenuItem>
+                                        <MenuItem sx={{ fontFamily: "Poppins" }} onClick={() => handleSignOut()}>Sign out</MenuItem>
                                     </MenuList>
                                 </ClickAwayListener>
                             </Paper>

@@ -29,7 +29,7 @@ function Footer() {
             </div>
             <hr className='w-[98%] mx-auto my-0'></hr>
             <div className='text-center p-3'>
-                <div>  <span>© 2024 <a href="" target='_blank' rel="noreferrer" className='text-custom-orange'>hungry</a></span>. All rights reserved. by <span><a href="https://github.com/MilanGligorijevic" target='_blank' rel="noreferrer">MG</a></span></div>
+                <div>  <span>© 2024 <a href="https://github.com/MilanGligorijevic/Reservations-App" target='_blank' rel="noreferrer" className='text-custom-orange'>hungry</a></span>. All rights reserved. by <span><a href="https://github.com/MilanGligorijevic" target='_blank' rel="noreferrer">MG</a></span></div>
             </div>
         </div>
     )

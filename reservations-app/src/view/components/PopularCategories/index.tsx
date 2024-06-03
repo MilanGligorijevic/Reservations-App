@@ -10,6 +10,7 @@ function PopularCategories() {
     return (
         <div className='w-9/12 my-10'>
             <h1 className='text-3xl font-medium my-5'>Popular categories</h1>
+
             <div className='flex gap-5'>
                 <FoodCategory category='Pasta' image={pastaCategory} key='pasta' />
                 <FoodCategory category='Burgers' image={burgerCategory} key='burger' />

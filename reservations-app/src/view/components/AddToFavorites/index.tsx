@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FavoritesEmpty } from '../../../assets/svg/FavoritesEmpty'
 import { FavoritesFilled } from '../../../assets/svg/FavoritesFilled'
 import { useCurrentUser } from '../../../context/userContext';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useFavoriteLocals } from '../../../context/favoriteLocalsContext';
 import Local from '../../../types/local';
 
@@ -15,6 +15,8 @@ function AddToFavorites({ localData }: AddToFavoritesProps) {
     const currentUser = useCurrentUser();
     const [favorite, setFavorite] = useState<boolean>();
     const navigateUser = useNavigate();
+    const pathLocation = useLocation();
+
 
     useEffect(() => {
         function containsLocal(localId: string) {
@@ -24,7 +26,7 @@ function AddToFavorites({ localData }: AddToFavoritesProps) {
             return false;
         }
 
-        if (localData && containsLocal(localData.id)) {
+        if (localData && currentUser.user && containsLocal(localData.id)) {
             setFavorite(true);
         } else {
             setFavorite(false);
@@ -42,7 +44,7 @@ function AddToFavorites({ localData }: AddToFavoritesProps) {
     }
 
     function redirectToSignIn() {
-        navigateUser('/signIn');
+        navigateUser('/signIn', { state: { pathName: pathLocation.pathname } });
     }
 
     return (

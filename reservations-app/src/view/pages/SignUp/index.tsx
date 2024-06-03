@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
@@ -16,10 +16,12 @@ function SignUp() {
     const [showPassword, setShowPassword] = React.useState(false);
     const [errorState, setErrorState] = useState<string>('');
     const currentUser = useCurrentUser();
+    const navigateUser = useNavigate();
+    const location = useLocation();
+
 
 
     function handleCredentials(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        console.log(e.target.value);
         setUserCredentials({ ...userCredentials, [e.target.name]: e.target.value })
     }
 
@@ -50,7 +52,7 @@ function SignUp() {
     function signInUser(id: string, email: string | null, firstName: string | undefined) {
         const user = { userId: id, userEmail: email, firstName: firstName };
         currentUser.userDispatch({ type: 'SET_USER', payload: user });
-        console.log(currentUser.user);
+        navigateUser(location.state ? location.state.pathName : "/");
     }
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
