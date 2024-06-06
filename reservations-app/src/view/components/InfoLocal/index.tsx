@@ -14,10 +14,11 @@ interface InfoLocalProps {
     phoneNumber?: string,
     openingHours?: string,
     closingHours?: string,
-    socialLinks?: string
+    facebook?: string,
+    instagram?: string,
 }
 
-function InfoLocal({ address, website, email, name, city, phoneNumber, openingHours, closingHours }: InfoLocalProps) {
+function InfoLocal({ address, website, email, name, city, phoneNumber, openingHours, closingHours, facebook, instagram }: InfoLocalProps) {
 
     const ref = useRef(null);
     const inView = useInView(ref, { once: true });
@@ -62,11 +63,11 @@ function InfoLocal({ address, website, email, name, city, phoneNumber, openingHo
                     <motion.p className='mb-3 border-b pb-2' variants={infoVariants}><a href={website} target='_blank' rel="noreferrer">{website}</a></motion.p>
                     <motion.p className='mb-5 border-b pb-2' variants={infoVariants}>Working hours: {openingHours} - {closingHours}</motion.p>
                     <motion.div className='flex gap-2' variants={infoVariants}>
-                        <FacebookIcon color={'#F96D00'} />
-                        <InstagramIcon color={'#F96D00'} />
+                        <a href={facebook} target='_blank' rel='noreferrer'><FacebookIcon color={'#F96D00'} /></a>
+                        <a href={instagram} target='_blank' rel='noreferrer'><InstagramIcon color={'#F96D00'} /></a>
                     </motion.div>
                 </motion.div>}
-            </div>
+            </div >
         </>
     )
 }

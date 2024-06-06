@@ -21,7 +21,9 @@ function AddLocalPage() {
     closingHours: "",
     website: "",
     email: "",
-    phoneNumber: ""
+    phoneNumber: "",
+    instagram: "",
+    facebook: "",
   });
   const [tag, setTag] = useState<string>("");
   const [image, setImage] = useState<string>("");
@@ -42,11 +44,11 @@ function AddLocalPage() {
   }
 
   function addNewImage() {
-    setLocalData({ ...localData, images: [image, ...localData.images] })
+    setLocalData({ ...localData, images: [...localData.images, image] })
   }
 
   function addNewTag() {
-    setLocalData({ ...localData, tags: [tag, ...localData.tags] })
+    setLocalData({ ...localData, tags: [...localData.tags, tag] })
   }
 
 
@@ -63,6 +65,8 @@ function AddLocalPage() {
       && localData.openingHours
       && localData.closingHours
       && localData.website
+      && localData.instagram
+      && localData.facebook
       && localData.email
       && localData.phoneNumber
       && localData.email.includes('@')
@@ -312,6 +316,68 @@ function AddLocalPage() {
                 label="Website"
                 variant="outlined"
                 name='website'
+                onChange={(e) => handleLocalData(e)}
+                sx={{
+                  '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+                    fontFamily: 'Poppins',
+                  },
+                  '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                    fontFamily: 'Poppins',
+                    color: '#F96D00',
+                  },
+                  '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#F96D00'
+                  },
+                  '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root': {
+                    fontFamily: 'Poppins',
+                  }
+                }}
+              />
+            </Box>
+            <Box
+              component="form"
+              sx={{
+                '& > :not(style)': { my: 1, width: '18rem' },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="outlined-basic"
+                label="Facebook"
+                variant="outlined"
+                name='facebook'
+                onChange={(e) => handleLocalData(e)}
+                sx={{
+                  '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+                    fontFamily: 'Poppins',
+                  },
+                  '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                    fontFamily: 'Poppins',
+                    color: '#F96D00',
+                  },
+                  '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    borderColor: '#F96D00'
+                  },
+                  '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root': {
+                    fontFamily: 'Poppins',
+                  }
+                }}
+              />
+            </Box>
+            <Box
+              component="form"
+              sx={{
+                '& > :not(style)': { my: 1, width: '18rem' },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="outlined-basic"
+                label="Instagram"
+                variant="outlined"
+                name='instagram'
                 onChange={(e) => handleLocalData(e)}
                 sx={{
                   '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {

@@ -21,6 +21,7 @@ function ImagesContainer({ imagesArray }: ImagesContainerProps) {
         }
     }
 
+
     const imagesVariants = {
         hidden: {
             opacity: 0,
@@ -63,7 +64,7 @@ function ImagesContainer({ imagesArray }: ImagesContainerProps) {
                     animate="visible"
                     variants={openGaleryVariants}
                 >
-                    <ImagesGalery />
+                    <ImagesGalery imagesArray={imagesArray} />
                 </motion.div>}
             <motion.div
                 className='h-[50vh] flex gap-1 mb-6'
@@ -80,18 +81,18 @@ function ImagesContainer({ imagesArray }: ImagesContainerProps) {
                 </motion.div>
                 <div className='w-[34%] flex flex-col gap-1 '>
                     <motion.div
-                        className='bg-custom-black flex-1 cursor-pointer'
+                        className='bg-custom-black h-40 flex-1 cursor-pointer'
                         variants={imagesVariants}
                         onClick={() => openImagesGalery()}
                     >
-                        <img src={imagesArray[1]} alt='local second' className='object-cover' />
+                        <img src={imagesArray[1]} alt='local second' className='w-full h-full object-cover' />
                     </motion.div>
                     <motion.div
-                        className='bg-custom-grey flex-1 cursor-pointer'
+                        className='bg-custom-grey h-40 flex-1 cursor-pointer'
                         variants={imagesVariants}
                         onClick={() => openImagesGalery()}
                     >
-                        <img src={imagesArray[2]} alt='local third' className='object-cover' />
+                        <img src={imagesArray[2]} alt='local third' className='w-full h-full object-cover' />
                     </motion.div>
                 </div>
             </motion.div>

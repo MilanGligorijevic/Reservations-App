@@ -12,41 +12,83 @@ import { addUsersReservation, makeLocalReservation } from '../../../firebase/con
 import { useCurrentUser } from '../../../context/userContext'
 import ReservationDetails from '../../components/ReservationDetails'
 import { useUserReservations } from '../../../context/usersReservationsContext'
+import { isValidPhoneNumber } from '../../../utilities/functions'
+import TaskSuccessful from '../../components/TaskSuccessful'
 
 
 
 function ReservationPage() {
     const { localId, localName, guestsNumber, reservationDate, reservationTime } = useParams();
-    const [firstName, setFirstName] = useState<string>("user");
-    const [lastName, setLastName] = useState<string>("user");
-    const [email, setEmail] = useState<string>("user@gmail.com");
-    const [phoneNumber, setPhoneNumber] = useState<string>("1234567");
+    const [firstName, setFirstName] = useState<string>("");
+    const [lastName, setLastName] = useState<string>("");
+    const [email, setEmail] = useState<string>("");
+    const [phoneNumber, setPhoneNumber] = useState<string>("");
     const currentUser = useCurrentUser();
     const usersReservation = useUserReservations();
     const navigateUser = useNavigate();
     const pathLocation = useLocation();
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const [taskSuccessful, setTaskSuccessful] = useState<boolean>(false);
+
 
 
     function bookReservation() {
-        if (localId && localName && guestsNumber && reservationDate && reservationTime) {
-            const reservationData: Reservation = {
-                id: uuidv4(),
-                numberOfGuests: parseInt(guestsNumber),
-                reservationDate: reservationDate,
-                reservationTime: reservationTime,
-                guestName: currentUser.user ? (currentUser.user.firstName + ' ' + currentUser.user.lastName) : (firstName + ' ' + lastName),
-                guestEmail: currentUser.user ? currentUser.user.email : email,
-                guestPhoneNumber: currentUser.user ? currentUser.user.phoneNumber : phoneNumber,
+        setErrorMessage("");
+        if (!currentUser.user) {
+            if (checkDataInput() && localId && localName && guestsNumber && reservationDate && reservationTime) {
+                const reservationData: Reservation = {
+                    id: uuidv4(),
+                    numberOfGuests: parseInt(guestsNumber),
+                    reservationDate: reservationDate,
+                    reservationTime: reservationTime,
+                    guestName: firstName + ' ' + lastName,
+                    guestEmail: email,
+                    guestPhoneNumber: phoneNumber,
+                }
+                makeLocalReservation(localId, reservationData);
+                sendReservationDetailsOnEmail();
+                setTaskSuccessful(true);
+                setTimeout(() => {
+                    navigateUser('/');
+                }, 3000)
+            } else {
+                setErrorMessage("Please fill all fields with valid values");
+                return;
             }
-            makeLocalReservation(localId, reservationData);
-            if (currentUser.user) usersReservation.reservationsDispatch({
-                type: 'ADD_USER_RESERVATION',
-                payload: { localId, localName, reservationData }
-            });
-            navigateUser('/');
         } else {
-            throw new Error("Reservation failed")
+            if (localId && localName && guestsNumber && reservationDate && reservationTime) {
+                const reservationData: Reservation = {
+                    id: uuidv4(),
+                    numberOfGuests: parseInt(guestsNumber),
+                    reservationDate: reservationDate,
+                    reservationTime: reservationTime,
+                    guestName: currentUser.user.firstName + ' ' + currentUser.user.lastName,
+                    guestEmail: currentUser.user.email,
+                    guestPhoneNumber: currentUser.user.phoneNumber,
+                }
+                makeLocalReservation(localId, reservationData);
+                usersReservation.reservationsDispatch({
+                    type: 'ADD_USER_RESERVATION',
+                    payload: { localId, localName, reservationData }
+                });
+                setTaskSuccessful(true);
+                setTimeout(() => {
+                    navigateUser('/');
+                }, 3000)
+            } else {
+                setErrorMessage("Reservation failed");
+                return;
+            }
         }
+    }
+
+    function sendReservationDetailsOnEmail() {
+        console.log("Details sent")
+    }
+
+    function checkDataInput() {
+        if (firstName && lastName && email && phoneNumber && isValidPhoneNumber(phoneNumber) && email.includes('@')) return true;
+        return false;
     }
 
     function handleFirstName(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -79,6 +121,7 @@ function ReservationPage() {
             <div className='flex flex-col items-center'>
                 <div className='w-3/12'>
                     <h1 className='text-3xl font-medium mb-5'>Complete your reservation</h1>
+                    {taskSuccessful && <TaskSuccessful />}
                     <ReservationDetails localName={localName} reservationDate={reservationDate} reservationTime={reservationTime} guestsNumber={guestsNumber} />
                     <div>
                         {!currentUser.user ?
@@ -88,6 +131,7 @@ function ReservationPage() {
                         {!currentUser.user && <div className='text-base mt-2 mb-4'>
                             <p><button className='text-custom-orange' onClick={redirectToSignIn}>Sign in</button> to make things quicker or <button className='text-custom-orange' onClick={redirectToSignUp}>Sign up</button> to create an account</p>
                         </div>}
+
                         {/* razmotriti prebacivanje ovog koda u zasebne komponente */}
                         <Box
                             component="form"
@@ -201,7 +245,9 @@ function ReservationPage() {
                                 }}
                             />
                         </Box>
+                        {errorMessage && <h2 className='text-lg text-center mb-4 text-red-500'>{errorMessage}</h2>}
                         <button className='rounded bg-custom-orange h-12 w-[100%] text-white text-lg mt-2 hover:bg-[#eb6902] mb-20' onClick={() => bookReservation()}>Complete reservation</button>
+
                     </div>
 
                 </div>

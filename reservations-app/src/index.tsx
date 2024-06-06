@@ -17,6 +17,7 @@ import { FavoriteLocalsContextProvider } from './context/favoriteLocalsContext';
 import UserProfile from './view/pages/UserProfile';
 import { UserReservationsContextProvider } from './context/usersReservationsContext';
 import AddLocalPage from './view/pages/AddLocalPage';
+import LocalsAndGeomap from './view/pages/LocalsAndGeomap';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/addLocal",
         element: <AddLocalPage />
+      },
+      {
+        path: "/localsGeomap",
+        element: <LocalsAndGeomap />
       }
     ]
   }

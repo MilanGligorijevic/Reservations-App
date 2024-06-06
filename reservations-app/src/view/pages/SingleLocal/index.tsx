@@ -22,6 +22,8 @@ function SingleLocal() {
         fetchSingleLocalData();
     }, [localId])
 
+    console.log(local?.facebook)
+
     return (
         <>
             <Navbar />
@@ -32,7 +34,17 @@ function SingleLocal() {
                     <AboutLocal localData={local} />
                     <ReservationContainer openingHours={local.openingHours} closingHours={local.closingHours} localName={local.name} />
                 </div>
-                <InfoLocal address={local.address} name={local.name} website={local.website} email={local.email} city={local.city} phoneNumber={local.phoneNumber} openingHours={local.openingHours} closingHours={local.closingHours} />
+                <InfoLocal
+                    address={local.address}
+                    name={local.name}
+                    website={local.website}
+                    email={local.email}
+                    city={local.city}
+                    phoneNumber={local.phoneNumber}
+                    openingHours={local.openingHours}
+                    closingHours={local.closingHours}
+                    facebook={local.facebook}
+                    instagram={local.instagram} />
             </div>}
             <Footer />
         </>

@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { LegacyRef, MutableRefObject, useEffect, useRef, useState } from 'react'
 import { APIProvider, AdvancedMarker, Map, Marker } from "@vis.gl/react-google-maps";
 import axios from 'axios';
 import Geolocation from '../../../types/Geolocation';
 
 interface LocationMapProps {
     address: string,
+    fullScreen?: boolean,
 }
 
-function LocationMap({ address }: LocationMapProps) {
+function LocationMap({ address, fullScreen }: LocationMapProps) {
     const API_KEY = 'AIzaSyDouVcd15FUe08J0BlYwxcQif7OvRl3PRI';
     const MAP_ID = "9942db31a61abe6e";
     const encodedAddress = encodeURIComponent(address);
@@ -30,8 +31,8 @@ function LocationMap({ address }: LocationMapProps) {
 
     return (
         <APIProvider apiKey={API_KEY}>
-            {showMap && <div className='h-96 w-96'>
-                <Map defaultZoom={14} defaultCenter={geolocationData} mapId={MAP_ID} streetViewControl={false} mapTypeControl={false}>
+            {showMap && <div className={fullScreen ? 'h-[100%] w-[100%]' : 'h-96 w-96'}>
+                <Map defaultZoom={14} center={geolocationData} mapId={MAP_ID} streetViewControl={false} mapTypeControl={false}>
                     <AdvancedMarker position={geolocationData}></AdvancedMarker>
                 </Map>
             </div>}

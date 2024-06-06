@@ -124,6 +124,8 @@ async function getSingleLocalData(localId: string | undefined) {
         website: docSnap.data().website,
         email: docSnap.data().email,
         phoneNumber: docSnap.data().phoneNumber,
+        facebook: docSnap.data().facebook,
+        instagram: docSnap.data().instagram,
       };
 
       return localData;

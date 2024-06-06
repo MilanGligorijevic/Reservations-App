@@ -72,7 +72,7 @@ function SignIn() {
     function handlePasswordReset(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         sendPasswordResetEmail(auth, userCredentials.email)
             .then(() => {
-                // Poslat email za reset lozinke
+                console.log('Uspesno poslat email za reset lozinke');
             })
             .catch((error) => {
                 const errorMessage = error.message;
@@ -93,7 +93,7 @@ function SignIn() {
                 <Link to="/" className='text-custom-orange text-3xl'>hungry</Link>
             </nav>
             <div className='flex flex-col items-center justify-center'>
-                <p className='text-3xl font-medium mb-5 mt-16'>Sign in to continue</p>
+                <p className='text-3xl font-medium mb-7 mt-14'>Sign in to continue</p>
                 <Box
                     component="form"
                     sx={{
