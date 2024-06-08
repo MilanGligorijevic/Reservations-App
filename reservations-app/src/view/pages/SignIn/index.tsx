@@ -90,10 +90,10 @@ function SignIn() {
     return (
         <>
             <nav className='h-20 bg-white text-center mt-7'>
-                <Link to="/" className='text-custom-orange text-3xl'>hungry</Link>
+                <Link to="/" className='text-custom-orange text-3xl '>hungry</Link>
             </nav>
             <div className='flex flex-col items-center justify-center'>
-                <p className='text-3xl font-medium mb-7 mt-14'>Sign in to continue</p>
+                <p className='text-3xl font-medium mb-7 mt-14 sm:text-2xl'>Sign in to continue</p>
                 <Box
                     component="form"
                     sx={{

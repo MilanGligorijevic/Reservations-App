@@ -46,11 +46,11 @@ function InfoLocal({ address, website, email, name, city, phoneNumber, openingHo
 
     return (
         <>
-            <h2 className='text-3xl font-medium mb-3'>Additional information</h2>
-            <div className='flex gap-6 mb-20' ref={ref}>
+            <h2 className='text-3xl font-medium mb-3 lg:text-2xl'>Additional information</h2>
+            <div className='flex gap-6 mb-20 ms:flex-col' ref={ref}>
                 <LocationMap address={address} />
                 {inView && <motion.div
-                    className='text-lg'
+                    className='text-lg lg:text-base'
                     initial="hidden"
                     animate="visible"
                     variants={additionalInfoVariants}

@@ -49,7 +49,7 @@ function ReservationContainer({ openingHours, closingHours, localName }: Reserva
 
 
     return (
-        <div className='h-80 min-w-[19rem] shadow rounded flex flex-col items-center gap-5 py-5'>
+        <div className='h-80 min-w-[19rem] shadow rounded flex flex-col items-center gap-5 py-5 lg:min-w-[17.5rem]'>
             <ReservationGuests guestsNumber={guestsNumber} addNumOfGuests={addNumOfGuests} subtractNumOfGuests={subtractNumOfGuests} />
             <ReservationDate reservationDate={reservationDate} handleReservationDate={(newValue: any) => handleReservationDate(newValue)} />
             <ReservationTime handleReservationTime={(newValue: any) => handleReservationTime(newValue)} reservationTime={reservationTime} reservationDate={reservationDate} reservedHours={reservedHours} workingHours={workingHours} />

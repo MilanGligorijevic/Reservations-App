@@ -8,6 +8,7 @@ import ReservationGuests from '../ReservationGuests';
 import ReservationLocation from '../ReservationLocation';
 import { SearchIcon } from '../../../assets/svg/SearchIcon';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 function HomePageReservationBar() {
 
@@ -59,14 +60,17 @@ function HomePageReservationBar() {
     }
 
     return (
-        <motion.div className='w-9/12 flex p-5 shadow flex justify-around items-center rounded' variants={reservationBarVariants} initial="hidden" animate="animate">
+        <motion.div className='w-9/12 flex p-5 shadow flex justify-around items-center rounded 2xl:w-10/12 xl:gap-6 md:mt-10 md:flex-wrap md:justify-around md:pl-5 md:relative' variants={reservationBarVariants} initial="hidden" animate="animate">
             <ReservationLocation handleReservationLocation={(newValue: any) => handleReservationLocation(newValue)} reservationLocation={reservationLocation} locationOptions={locationOptions} />
             <ReservationDate reservationDate={reservationDate} handleReservationDate={(newValue: any) => handleReservationDate(newValue)} />
             <ReservationTime reservationTime={reservationTime} reservationDate={reservationDate} handleReservationTime={(newValue: any) => handleReservationTime(newValue)} workingHours={workingHours} />
             <ReservationGuests guestsNumber={guestsNumber} addNumOfGuests={addNumOfGuests} subtractNumOfGuests={subtractNumOfGuests} />
-            <button>
+            <Link to={`/localsGeomap?city=${reservationLocation}&time=${reservationTime}`} className='hidden md:block'>
+                <button className='rounded bg-custom-orange h-12 w-64 text-white text-lg hover:bg-[#eb6902]'>Search</button>
+            </Link>
+            <Link to={`/localsGeomap?city=${reservationLocation}&time=${reservationTime}`} className='md:hidden'>
                 <SearchIcon />
-            </button>
+            </Link>
         </motion.div>
     )
 }

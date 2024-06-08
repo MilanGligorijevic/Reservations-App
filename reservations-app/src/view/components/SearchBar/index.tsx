@@ -4,6 +4,7 @@ import { useLocals } from '../../../context/localsContext';
 import { searchLocalsByInput } from '../../../utilities/functions';
 import Local from '../../../types/local';
 import { Link } from 'react-router-dom';
+import { useMediaQuery } from '@mui/material';
 
 
 function SearchBar() {
@@ -11,11 +12,12 @@ function SearchBar() {
     const locals = useLocals();
     const [searchResult, setSearchResult] = useState<Array<Local>>([]);
 
+    const isTablet = useMediaQuery(
+        `(max-width: 935px)`,
+    );
+
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult(searchLocalsByInput(searchInput, locals));
-            console.log(searchResult)
-        }, 400)
+        setSearchResult(searchLocalsByInput(searchInput, locals));
     }, [searchInput])
 
     function handleSearchInput(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -31,7 +33,7 @@ function SearchBar() {
                 value={searchInput}
                 onChange={(e) => handleSearchInput(e)}
                 sx={{
-                    width: '34vw',
+                    width: isTablet ? '80vw' : '34vw',
                     color: 'success.main',
                     backgroundColor: '#FFFFFF',
                     '& .css-1lfthva-MuiInputBase-input-MuiFilledInput-input': {

@@ -6,20 +6,20 @@ import { TwitterIcon } from '../../../assets/svg/TwitterIcon'
 function Footer() {
     return (
         <div className='relative bg-custom-black text-white'>
-            <div className='flex justify-center items-start gap-20 p-6 h-36'>
-                <div>
+            <div className='flex justify-center items-start gap-20 p-6 h-36 sm:h-20'>
+                <div className='sm:hidden'>
                     <h1 className='text-custom-orange'>COMPANY</h1>
                     <p className='cursor-pointer'>About</p>
                     <p className='cursor-pointer'>Purpose</p>
                     <p className='cursor-pointer'>Careers</p>
                 </div>
-                <div>
+                <div className='sm:hidden'>
                     <h1 className='text-custom-orange'>USEFUL LINKS</h1>
                     <p className='cursor-pointer'>Support</p>
                     <p className='cursor-pointer'>Contact</p>
                 </div>
                 <div>
-                    <h1 className='text-custom-orange'>SOCIALS</h1>
+                    <h1 className='text-custom-orange sm:hidden'>SOCIALS</h1>
                     <div className='flex gap-3 justify-center'>
                         <FacebookIcon color={'#ffffff'} />
                         <InstagramIcon color={'#ffffff'} />

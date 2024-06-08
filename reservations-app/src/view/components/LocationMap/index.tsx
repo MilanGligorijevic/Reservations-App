@@ -31,7 +31,7 @@ function LocationMap({ address, fullScreen }: LocationMapProps) {
 
     return (
         <APIProvider apiKey={API_KEY}>
-            {showMap && <div className={fullScreen ? 'h-[100%] w-[100%]' : 'h-96 w-96'}>
+            {showMap && <div className={fullScreen ? 'h-[100%] w-[100%]' : 'h-96 w-96 ms:w-full ms:h-80 sm:hidden'}>
                 <Map defaultZoom={14} center={geolocationData} mapId={MAP_ID} streetViewControl={false} mapTypeControl={false}>
                     <AdvancedMarker position={geolocationData}></AdvancedMarker>
                 </Map>

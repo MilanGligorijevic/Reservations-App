@@ -73,7 +73,7 @@ function ProfileDropdownMenu({ handleSignOut }: ProfileDropdownMenuProps) {
     console.log(currentUser.user)
 
     return (
-        <Stack direction="row" spacing={2} className='ml-60'>
+        <Stack direction="row" spacing={2} className='ml-60 lg:ml-36 md:ml-0'>
 
             <div>
                 <Button

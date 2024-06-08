@@ -5,6 +5,7 @@ import HomePageReservationBar from '../../components/HomePageReservationBar';
 import PopularCategories from '../../components/PopularCategories';
 import ExploreTopPicks from '../../components/ExploreTopPicks';
 import LoadingCircle from '../../components/LoadingCircle';
+import NavbarMobile from '../../components/NavbarMobile';
 
 function Home() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -18,6 +19,7 @@ function Home() {
     return (
         <>
             <Navbar />
+            <NavbarMobile />
             {isLoading ?
                 <LoadingCircle />
                 :

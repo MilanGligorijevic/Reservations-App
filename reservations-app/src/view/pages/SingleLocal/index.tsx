@@ -8,10 +8,14 @@ import ReservationContainer from '../../components/ReservationContainer'
 import { useParams } from 'react-router-dom'
 import Local from '../../../types/local'
 import { getSingleLocalData } from '../../../firebase/config'
+import NavbarMobile from '../../components/NavbarMobile'
+import ImagesContainerMobile from '../../components/ImagesContainerMobile'
 
 function SingleLocal() {
     let { localId } = useParams();
     const [local, setLocal] = useState<Local>();
+
+
 
     useEffect(() => {
         async function fetchSingleLocalData() {
@@ -27,10 +31,12 @@ function SingleLocal() {
     return (
         <>
             <Navbar />
+            <NavbarMobile />
+            {local && <ImagesContainerMobile imagesArray={local.images} />}
 
-            {local && <div className='w-[64vw] mx-auto'>
+            {local && <div className='w-[64vw] mx-auto xl:w-4/5 md:mt-10'>
                 <ImagesContainer imagesArray={local.images} />
-                <div className='flex gap-10 mb-14'>
+                <div className='flex gap-10 mb-14 ms:flex-col'>
                     <AboutLocal localData={local} />
                     <ReservationContainer openingHours={local.openingHours} closingHours={local.closingHours} localName={local.name} />
                 </div>

@@ -33,8 +33,8 @@ function Navbar() {
     }
 
     return (
-        <nav className='h-20 flex justify-between items-center shadow-sm px-5 sticky top-0 z-10 bg-white mb-10 opacity-[99%]'>
-            {showAnimation ? <div className='flex ml-5 items-center'>
+        <nav className='h-20 flex justify-between items-center shadow-sm px-5 sticky top-0 z-10 bg-white mb-10 opacity-[99%] md:hidden'>
+            {showAnimation ? <div className='flex ml-5 items-center lg:hidden'>
                 <motion.div animate={{
                     transition: { delay: 1.5, duration: .3 },
                     opacity: [0, 0.5, 1],
@@ -59,7 +59,7 @@ function Navbar() {
             {currentUser.user ?
                 <ProfileDropdownMenu handleSignOut={handleSignOut} />
                 :
-                <Link to='/signIn' className='ml-60'>
+                <Link to='/signIn' className='ml-60 lg:ml-36 md:ml-0'>
                     <button className='rounded-3xl bg-custom-orange h-10 w-28 text-white hover:bg-[#eb6902]'>Sign in</button>
                 </Link>}
         </nav>

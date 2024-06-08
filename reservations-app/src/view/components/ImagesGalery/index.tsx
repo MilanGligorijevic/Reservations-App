@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
+import { useMediaQuery } from '@mui/material';
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
     return {
@@ -15,15 +16,21 @@ interface ImagesGaleryProps {
 }
 
 export default function ImagesGalery({ imagesArray }: ImagesGaleryProps) {
+    const isMobile = useMediaQuery(
+        `(max-width: 620px)`,
+    );
+
     return (
+
+
         <ImageList
-            sx={{ width: 600, height: 700, backgroundColor: "#ffffff" }}
+            sx={isMobile ? { width: "80%", height: "80%", backgroundColor: "#ffffff" } : { width: 600, height: 700, backgroundColor: "#ffffff" }}
             variant="quilted"
             cols={4}
-            rowHeight={121}
+            rowHeight={isMobile ? 140 : 121}
         >
             {imagesArray.map((img, index) => (
-                <ImageListItem key={img} cols={2} rows={2}>
+                <ImageListItem key={img} cols={isMobile ? 4 : 2} rows={isMobile ? 1 : 2}>
                     <img
                         {...srcset(img, 121, 2, 2)}
                         alt='local'

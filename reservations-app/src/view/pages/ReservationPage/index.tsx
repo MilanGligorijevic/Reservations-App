@@ -14,6 +14,8 @@ import ReservationDetails from '../../components/ReservationDetails'
 import { useUserReservations } from '../../../context/usersReservationsContext'
 import { isValidPhoneNumber } from '../../../utilities/functions'
 import TaskSuccessful from '../../components/TaskSuccessful'
+import emailjs from 'emailjs-com';
+import NavbarMobile from '../../components/NavbarMobile'
 
 
 
@@ -83,7 +85,15 @@ function ReservationPage() {
     }
 
     function sendReservationDetailsOnEmail() {
-        console.log("Details sent")
+        emailjs.send('service_zvbvt7q', 'template_liz4yjh', {
+            to_name: firstName,
+            reply_to: email,
+        }, 'sfBqPr9Hxszym2Vyo')
+            .then((response) => {
+                console.log('Email sent successfully', response.status, response.text);
+            }, (error) => {
+                console.error('Error sending email', error);
+            });
     }
 
     function checkDataInput() {
@@ -118,9 +128,10 @@ function ReservationPage() {
     return (
         <>
             <Navbar />
-            <div className='flex flex-col items-center'>
-                <div className='w-3/12'>
-                    <h1 className='text-3xl font-medium mb-5'>Complete your reservation</h1>
+            <NavbarMobile />
+            <div className='flex flex-col items-center md:mt-10'>
+                <div className='w-3/12 lg:w-3/5'>
+                    <h1 className='text-3xl font-medium mb-5 sm:text-2xl'>Complete your reservation</h1>
                     {taskSuccessful && <TaskSuccessful />}
                     <ReservationDetails localName={localName} reservationDate={reservationDate} reservationTime={reservationTime} guestsNumber={guestsNumber} />
                     <div>
@@ -246,7 +257,7 @@ function ReservationPage() {
                             />
                         </Box>
                         {errorMessage && <h2 className='text-lg text-center mb-4 text-red-500'>{errorMessage}</h2>}
-                        <button className='rounded bg-custom-orange h-12 w-[100%] text-white text-lg mt-2 hover:bg-[#eb6902] mb-20' onClick={() => bookReservation()}>Complete reservation</button>
+                        <button className='rounded bg-custom-orange h-12 w-[100%] text-white text-lg mt-2 hover:bg-[#eb6902] mb-20 sm:text-base' onClick={() => bookReservation()}>Complete reservation</button>
 
                     </div>
 

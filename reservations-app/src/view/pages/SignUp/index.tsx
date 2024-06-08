@@ -67,8 +67,8 @@ function SignUp() {
                 <Link to="/" className='text-custom-orange text-3xl'>hungry</Link>
             </nav>
             <div className='flex flex-col items-center justify-center'>
-                <p className='text-3xl font-medium mb-5 mt-10'>Sign up to continue</p>
-                <p className='text-base w-72 mb-5'>Create a free account to book and manage your reservations</p>
+                <p className='text-3xl font-medium mb-5 mt-10 sm:text-2xl'>Sign up to continue</p>
+                <p className='text-base w-72  text-center mb-5 sm:text-sm'>Create a free account to book and manage your reservations</p>
                 <Box
                     component="form"
                     sx={{

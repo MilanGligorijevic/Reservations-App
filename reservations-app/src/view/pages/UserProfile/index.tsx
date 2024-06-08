@@ -8,6 +8,7 @@ import { useCurrentUser } from '../../../context/userContext'
 import { useFavoriteLocals } from '../../../context/favoriteLocalsContext'
 import { useUserReservations } from '../../../context/usersReservationsContext'
 import { useLocation } from 'react-router-dom'
+import NavbarMobile from '../../components/NavbarMobile'
 
 function UserProfile() {
     const [isOpenProfileOpen, setIsOpenProfileOpen] = useState(false);
@@ -42,7 +43,8 @@ function UserProfile() {
     return (
         <>
             <Navbar />
-            <div className='flex flex-col items-center gap-7 mb-10 min-h-[65vh]'>
+            <NavbarMobile />
+            <div className='flex flex-col items-center gap-7 mb-10 min-h-[65vh] md:mt-10 sm:min-h-[75vh]'>
                 <ProfileInfo userInfo={currentUser.user} isOpen={isOpenProfileOpen} handleClick={handleClickProfileInfo} />
                 <ProfileReservations usersReservations={usersReservations.reservations} isOpen={isOpenProfileReservations} handleClick={handleClickProfileReservations} />
                 <ProfileFavorites favoriteLocals={favoriteLocals.favoriteLocals} isOpen={isOpenProfileFavorites} handleClick={handleClickProfileFavorites} />
