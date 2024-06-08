@@ -32,36 +32,32 @@ function SearchBar() {
                 variant="filled"
                 value={searchInput}
                 onChange={(e) => handleSearchInput(e)}
+                className='bg-custom-orange'
                 sx={{
                     width: isTablet ? '80vw' : '34vw',
                     color: 'success.main',
                     backgroundColor: '#FFFFFF',
-                    '& .css-1lfthva-MuiInputBase-input-MuiFilledInput-input': {
+                    '& .MuiFilledInput-input': {
                         fontFamily: 'Poppins'
                     },
-                    '& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root': {
+                    '& .MuiFormLabel-root, & .MuiInputLabel-root, & .MuiFilledInput-root': {
                         fontFamily: 'Poppins'
                     },
-                    '& .css-batk84-MuiInputBase-root-MuiFilledInput-root': {
+                    '& .MuiInputBase-root.MuiFilledInput-root': {
                         fontFamily: 'Poppins',
                         backgroundColor: '#FFFFFF',
                         '&::after': {
                             borderBottom: '2px solid #F96D00',
+                        },
+                        '&.Mui-focused, &:hover': {
+                            backgroundColor: '#FFFFFF',
                         }
                     },
-                    '& .css-batk84-MuiInputBase-root-MuiFilledInput-root.Mui-focused': {
-                        backgroundColor: '#FFFFFF',
-                    },
-                    '& .css-batk84-MuiInputBase-root-MuiFilledInput-root:hover': {
-                        backgroundColor: '#FFFFFF',
-                    },
-                    '& .css-e4w4as-MuiFormLabel-root-MuiInputLabel-root': {
-                        fontFamily: 'Poppins'
-                    },
-                    '& .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
                         color: '#F96D00',
                     }
                 }}
+
             />
             {searchInput && <div className='absolute bg-white w-full rounded-b shadow'>
                 {searchResult.map((local) => {

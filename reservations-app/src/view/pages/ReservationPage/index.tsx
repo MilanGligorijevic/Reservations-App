@@ -159,14 +159,14 @@ function ReservationPage() {
                                 disabled={currentUser.user ? true : false}
                                 onChange={(e) => handleFirstName(e)}
                                 sx={{
-                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root': {
                                         fontFamily: 'Poppins',
                                     },
-                                    '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
                                         fontFamily: 'Poppins',
                                         color: '#F96D00',
                                     },
-                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    '& .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#F96D00'
                                     }
                                 }}
@@ -187,14 +187,14 @@ function ReservationPage() {
                                 disabled={currentUser.user ? true : false}
                                 onChange={(e) => handleLastName(e)}
                                 sx={{
-                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root': {
                                         fontFamily: 'Poppins',
                                     },
-                                    '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
                                         fontFamily: 'Poppins',
                                         color: '#F96D00',
                                     },
-                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    '& .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#F96D00'
                                     }
                                 }}
@@ -215,14 +215,14 @@ function ReservationPage() {
                                 disabled={currentUser.user ? true : false}
                                 onChange={(e) => handleEmail(e)}
                                 sx={{
-                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root': {
                                         fontFamily: 'Poppins',
                                     },
-                                    '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
                                         fontFamily: 'Poppins',
                                         color: '#F96D00',
                                     },
-                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    '& .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#F96D00'
                                     }
                                 }}
@@ -243,14 +243,14 @@ function ReservationPage() {
                                 disabled={currentUser.user ? true : false}
                                 onChange={(e) => handlePhoneNumber(e)}
                                 sx={{
-                                    '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root': {
                                         fontFamily: 'Poppins',
                                     },
-                                    '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                                    '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
                                         fontFamily: 'Poppins',
                                         color: '#F96D00',
                                     },
-                                    '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                                    '& .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                         borderColor: '#F96D00'
                                     }
                                 }}

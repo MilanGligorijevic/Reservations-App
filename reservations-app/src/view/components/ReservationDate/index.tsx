@@ -21,13 +21,13 @@ function ReservationDate({ reservationDate, handleReservationDate }: Reservation
                 onChange={(newValue) => handleReservationDate(newValue)}
                 sx={{
                     width: '16rem',
-                    '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
+                    '& .MuiInputBase-input': {
                         fontFamily: 'Poppins',
                     },
-                    '& .css-i4bv87-MuiSvgIcon-root': {
+                    '& .MuiSvgIcon-root': {
                         color: '#313131',
                     },
-                    '& .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                    '& .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                         borderColor: "#F96D00"
                     }
                 }}

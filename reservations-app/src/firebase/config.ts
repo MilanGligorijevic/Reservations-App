@@ -197,7 +197,6 @@ async function getUsersReservations(userId: string) {
     const querySnapshot = await getDocs(collRef);
     const reservations: Object[] = [];
     querySnapshot.forEach((doc) => {
-      console.log(doc.data());
       reservations.push(doc.data());
     });
     return reservations;

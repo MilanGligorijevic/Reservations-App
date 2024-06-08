@@ -109,29 +109,33 @@ function SignIn() {
                         name='email'
                         onChange={(e) => handleCredentials(e)}
                         sx={{
-                            '& .css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root': {
+                            '& .MuiInputBase-input': {
                                 fontFamily: 'Poppins',
                             },
-                            '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                            '& .MuiFormLabel-root.MuiInputLabel-root': {
+                                fontFamily: 'Poppins',
+                            },
+                            '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
                                 fontFamily: 'Poppins',
                                 color: '#F96D00',
                             },
-                            '& .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                            '& .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                                 borderColor: '#F96D00'
-                            },
-                            '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root': {
-                                fontFamily: 'Poppins',
                             }
                         }}
                     />
                 </Box>
                 <FormControl
                     sx={{
-                        m: 1, width: '18rem',
-                        '& .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused': {
+                        m: 1,
+                        width: '18rem',
+                        '& .MuiInputBase-input': {
+                            fontFamily: 'Poppins',
+                        },
+                        '& .MuiFormLabel-root.MuiInputLabel-root.Mui-focused': {
                             color: '#F96D00',
                         },
-                        '& .css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        '& .MuiInputBase-root.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                             borderColor: '#F96D00'
                         }
                     }}
