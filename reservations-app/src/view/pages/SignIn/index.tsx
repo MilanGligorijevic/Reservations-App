@@ -50,6 +50,8 @@ function SignIn() {
         console.log(currentUser.user);
     }
 
+
+
     function handleGoogleLogin(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         e.preventDefault();
         if (isMobile) {
@@ -57,20 +59,24 @@ function SignIn() {
             getRedirectResult(auth)
                 .then((result) => {
                     const user = result?.user;
-                    user && signInUser(user.uid, user.email, user.displayName);
+                    if (user) {
+                        signInUser(user.uid, user.email, user.displayName);
+                    }
+                    navigateUser('/');
+                }).catch((error) => {
+                    const errorMessage = error.message;
+                    setErrorState(firebaseErrorHandler(errorMessage));
+                });
+        } else {
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    const user = result.user;
+                    signInUser(user.uid, user.email, user.displayName);
                 }).catch((error) => {
                     const errorMessage = error.message;
                     setErrorState(firebaseErrorHandler(errorMessage));
                 });
         }
-        signInWithPopup(auth, provider)
-            .then((result) => {
-                const user = result.user;
-                signInUser(user.uid, user.email, user.displayName);
-            }).catch((error) => {
-                const errorMessage = error.message;
-                setErrorState(firebaseErrorHandler(errorMessage));
-            });
     }
 
     function handlePasswordReset(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {

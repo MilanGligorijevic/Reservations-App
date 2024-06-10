@@ -51,14 +51,14 @@ async function addUserToFirebase(
   });
 }
 
-async function getSingleUser(userId: string) {
-  if (userId) {
-    const userRef = doc(db, "users", userId);
+async function getSingleUser(user: any) {
+  if (user) {
+    const userRef = doc(db, "users", user.uid);
     const docSnap = await getDoc(userRef);
 
     if (docSnap.exists()) {
-      const user = {
-        userId: userId,
+      const returnUser = {
+        userId: user.uid,
         firstName: docSnap.data().firstName,
         lastName: docSnap.data().lastName,
         email: docSnap.data().email,
@@ -67,9 +67,28 @@ async function getSingleUser(userId: string) {
         reservations: docSnap.data().reservations,
       };
 
-      return user;
+      return returnUser;
     } else {
-      throw new Error("User does not exist in database");
+      addUserToFirebase(
+        user.uid,
+        user.displayName.split(" ")[0],
+        user.displayName.split(" ")[1],
+        user.email,
+        "+000 111 2222"
+      );
+      if (docSnap.exists()) {
+        const returnUser = {
+          userId: user.uid,
+          firstName: docSnap.data().firstName,
+          lastName: docSnap.data().lastName,
+          email: docSnap.data().email,
+          phoneNumber: docSnap.data().phoneNumber,
+          favoriteLocals: docSnap.data().favoriteLocals,
+          reservations: docSnap.data().reservations,
+        };
+
+        return returnUser;
+      }
     }
   } else {
     throw new Error("Looking for invalid user!");

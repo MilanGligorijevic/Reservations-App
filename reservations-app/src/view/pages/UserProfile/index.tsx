@@ -26,7 +26,7 @@ function UserProfile() {
         setIsOpenProfileFavorites(state.profileFavorites)
     }, [state])
 
-
+    console.log(currentUser.user)
 
     function handleClickProfileInfo() {
         setIsOpenProfileOpen((prevState) => !prevState);

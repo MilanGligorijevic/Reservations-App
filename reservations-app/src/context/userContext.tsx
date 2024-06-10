@@ -28,7 +28,7 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 async function handleUserData(user: any) {
-                    const currUser = await getSingleUser(user.uid);
+                    const currUser = await getSingleUser(user);
                     dispatch({ type: 'SET_USER', payload: currUser }) //ukoliko promenimo tab ili zatvorimo browser, user ce i dalje ostati ulogovan
                 }
                 handleUserData(user);
