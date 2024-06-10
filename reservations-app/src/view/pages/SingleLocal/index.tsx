@@ -26,7 +26,6 @@ function SingleLocal() {
         fetchSingleLocalData();
     }, [localId])
 
-    console.log(local?.facebook)
 
     return (
         <>

@@ -2,6 +2,7 @@ import React from 'react'
 import { FacebookIcon } from '../../../assets/svg/FacebookIcon'
 import { InstagramIcon } from '../../../assets/svg/InstagramIcon'
 import { TwitterIcon } from '../../../assets/svg/TwitterIcon'
+import { motion } from 'framer-motion'
 
 function Footer() {
     return (

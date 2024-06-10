@@ -1,10 +1,11 @@
 import { Box, TextField } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Local from '../../../types/local';
 import { v4 as uuidv4 } from 'uuid';
 import { Link, useNavigate } from 'react-router-dom';
 import { addNewLocalToFirebase } from '../../../firebase/config';
 import { isValidPhoneNumber } from '../../../utilities/functions';
+import { useCurrentUser } from '../../../context/userContext';
 
 
 function AddLocalPage() {
@@ -29,6 +30,12 @@ function AddLocalPage() {
   const [image, setImage] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [localAdded, setLocalAdded] = useState<boolean>(false);
+  const [showPage, setShowPage] = useState<boolean>(false);
+  const currentUser = useCurrentUser();
+
+  useEffect(() => {
+    if (currentUser.user?.firstName === 'admin') setShowPage(true); //prikaz stranice samo za admin usera, mozda dodati kompleksniju logiku ali radi posao za sad
+  }, [currentUser.user])
 
   function handleLocalData(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setLocalData({ ...localData, [e.target.name]: e.target.value })
@@ -99,7 +106,7 @@ function AddLocalPage() {
       <nav className='h-20 bg-white text-center mt-7'>
         <Link to="/" className='text-custom-orange text-3xl'>hungry</Link>
       </nav>
-      <div className=' w-9/12 mx-auto'>
+      {showPage && <div className=' w-9/12 mx-auto'>
         <h1 className='text-3xl text-center mt-5 mb-12'>Add new local</h1>
         {errorMessage && <h2 className='text-xl text-center mb-7 text-red-500'>{errorMessage}</h2>}
         {localAdded && <h2 className='text-xl text-center mb-7 text-green-500'>Local successfully added!</h2>}
@@ -518,7 +525,7 @@ function AddLocalPage() {
             <button className='rounded bg-custom-orange h-12 w-72 text-white text-lg hover:bg-[#eb6902] mt-48' onClick={addNewLocal}>Add local</button>
           </div>
         </div>
-      </div>
+      </div>}
     </>
   )
 }

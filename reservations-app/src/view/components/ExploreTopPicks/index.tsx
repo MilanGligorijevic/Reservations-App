@@ -17,7 +17,7 @@ function ExploreTopPicks() {
         <div className='w-9/12 mt-10 mb-20 2xl:w-10/12'>
             <div className='flex justify-between items-center my-5'>
                 <h1 className='text-3xl font-medium md:text-2xl sm:font-normal'>{isMobile ? "Top restaurants" : "Explore top restaurants"}</h1>
-                <Link to="/localsGeomap" className='text-lg text-custom-orange self-end sm:text-base'>{isMobile ? "Explore" : "Explore all"}</Link>
+                <Link to="/localsGeomap" className='text-lg text-custom-orange self-end hover:underline sm:text-base'>{isMobile ? "Explore" : "Explore all"}</Link>
             </div>
             <div className='flex gap-5 md:hidden'>
                 {topLocals.map((local) => {
