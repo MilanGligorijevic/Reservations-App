@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useLocals } from '../../../context/localsContext';
 import RestaurantPreview from '../RestaurantPreview';
 import { Link } from 'react-router-dom';
@@ -19,18 +19,18 @@ function ExploreTopPicks() {
                 <h1 className='text-3xl font-medium md:text-2xl sm:font-normal'>{isMobile ? "Top restaurants" : "Explore top restaurants"}</h1>
                 <Link to="/localsGeomap" className='text-lg text-custom-orange self-end hover:underline sm:text-base'>{isMobile ? "Explore" : "Explore all"}</Link>
             </div>
-            <div className='flex gap-5 md:hidden'>
+            {topLocals && <div className='flex gap-5 md:hidden'>
                 {topLocals.map((local) => {
                     return <RestaurantPreview key={local.id} id={local.id} image={local.images[0]} name={local.name} address={local.address} />
                 })}
-            </div>
-            <div className='hidden md:flex md:gap-5 sm:flex-wrap'>
+            </div>}
+            {topLocals && <div className='hidden md:flex md:gap-5 sm:flex-wrap'>
                 {topLocals.map((local, index) => {
                     if (index <= 2) {
                         return <RestaurantPreview key={local.id} id={local.id} image={local.images[0]} name={local.name} address={local.address} />
                     }
                 })}
-            </div>
+            </div>}
         </div>
     )
 }

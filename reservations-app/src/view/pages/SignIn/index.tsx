@@ -5,10 +5,10 @@ import TextField from '@mui/material/TextField';
 import { motion } from 'framer-motion';
 import User from '../../../types/User';
 import { useCurrentUser } from '../../../context/userContext';
-import { sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { getRedirectResult, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from 'firebase/auth';
 import { auth, provider } from '../../../firebase/config';
 import firebaseErrorHandler from '../../../utilities/firebaseErrorHandler';
-import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput } from '@mui/material';
+import { FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, useMediaQuery } from '@mui/material';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Visibility from '@mui/icons-material/Visibility';
 
@@ -19,6 +19,10 @@ function SignIn() {
     const [showPassword, setShowPassword] = React.useState(false);
     const navigateUser = useNavigate();
     const location = useLocation();
+
+    const isMobile = useMediaQuery(
+        `(max-width: 620px)`,
+    );
 
 
     function handleCredentials(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -48,17 +52,17 @@ function SignIn() {
 
     function handleGoogleLogin(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         e.preventDefault();
-        // if (isSmallMobile) {
-        //     signInWithRedirect(auth, provider);
-        //     getRedirectResult(auth)
-        //         .then((result) => {
-        //             const user = result?.user;
-        //             user && logInUser(user.uid, user.email);
-        //             navigateToHomePage('/');
-        //         }).catch((error) => {
-        //             const errorMessage = error.message;
-        //             setErrorState(firebaseErrorHandler(errorMessage));
-        //         }); SREDITI ZA MOBILNE UREDJAJE
+        if (isMobile) {
+            signInWithRedirect(auth, provider);
+            getRedirectResult(auth)
+                .then((result) => {
+                    const user = result?.user;
+                    user && signInUser(user.uid, user.email, user.displayName);
+                }).catch((error) => {
+                    const errorMessage = error.message;
+                    setErrorState(firebaseErrorHandler(errorMessage));
+                });
+        }
         signInWithPopup(auth, provider)
             .then((result) => {
                 const user = result.user;
@@ -189,7 +193,7 @@ function SignIn() {
                 </Link>
                 <Link to='/'>
                     <motion.button
-                        className='rounded bg-white h-12 w-72 text-custom-orange text-lg border border-custom-orange'
+                        className='rounded bg-white h-12 w-72 mb-10 text-custom-orange text-lg border border-custom-orange'
                         whileHover={{
                             backgroundColor: "#F96D00",
                             color: "#FFFFFF",

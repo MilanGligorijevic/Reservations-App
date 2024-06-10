@@ -5,7 +5,7 @@ import pastaCategory from '../../../assets/img/pastaCategory.jpg'
 import burgerCategory from '../../../assets/img/burgerCategory.jpg'
 import sushiCategory from '../../../assets/img/sushiCategory.jpg'
 import saladCategory from '../../../assets/img/saladCategory.jpg'
-import './index.css'
+import './style.css'
 import 'swiper/css';
 import "swiper/css/navigation";
 
