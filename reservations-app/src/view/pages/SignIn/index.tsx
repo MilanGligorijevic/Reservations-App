@@ -62,7 +62,6 @@ function SignIn() {
                     if (user) {
                         signInUser(user.uid, user.email, user.displayName);
                     }
-                    navigateUser('/');
                 }).catch((error) => {
                     const errorMessage = error.message;
                     setErrorState(firebaseErrorHandler(errorMessage));
