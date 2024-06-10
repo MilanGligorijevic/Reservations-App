@@ -1,6 +1,6 @@
 # Technologies used
 
-TS, HTML, Tailwind, React, Firebase, MUI components, Framer Motion etc.
+TS, HTML, Tailwind, React, Firebase, MUI components, Framer Motion, GoogleMaps API etc.
 
 # Getting Started with Create React App
 
