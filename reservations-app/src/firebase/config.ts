@@ -28,7 +28,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-//funkcije vezane za rad sa korisnikom
+//functions for working with user
 
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
@@ -95,13 +95,13 @@ async function getSingleUser(user: any) {
   }
 }
 
-//funkcije vezanje za rad sa bazom
+//functions for working with db
 
 const db = getFirestore(app);
 
 const colRef = collection(db, "locals");
 
-//funkcija za dopremanje svih lokala iz baze
+//function for getting all of the restaurants
 async function getAllLocals() {
   const localsData = await getDocs(colRef);
   const locals: Array<Local> = [];
@@ -156,7 +156,7 @@ async function getSingleLocalData(localId: string | undefined) {
   }
 }
 
-//ADMIN funkcija za dodavanje novog lokala u bazu
+//ADMIN function for adding new restaurant
 async function addNewLocalToFirebase(newLocal: Local) {
   const localsRef = doc(db, "locals", newLocal.id);
   await setDoc(localsRef, {
@@ -164,7 +164,6 @@ async function addNewLocalToFirebase(newLocal: Local) {
   });
 }
 
-// upisati prave podatke i dodeliti unikatni ID rezervaciji
 async function makeLocalReservation(
   localId: string | undefined,
   reservation: Reservation
@@ -189,7 +188,7 @@ async function makeLocalReservation(
     throw new Error("Looking for invalid local!");
   }
 }
-//funkcija za dodavanje rezervacije u user document
+//function for adding reservation
 async function addUsersReservation(
   userId: string,
   reservation: UserReservation
@@ -209,7 +208,7 @@ async function addUsersReservation(
     reservationTime: reservation.reservationTime,
   });
 }
-//funkcija za preuzimanje svih rezervacija usera iz user documenta
+//function for getting all user reservations
 async function getUsersReservations(userId: string) {
   const collRef = collection(db, "users", userId, "reservations");
   try {
@@ -224,7 +223,7 @@ async function getUsersReservations(userId: string) {
   }
 }
 
-//funkcija za preuzimanje rezervisanih sati u datom lokalu
+//function for getting reserved hours
 async function getReservedHours(
   localId: string | undefined,
   reservationDate: string | undefined
@@ -245,7 +244,7 @@ async function getReservedHours(
   }
 }
 
-//funkcija za preuzimanje favorites locala korisnika
+//function for getting user's favorite restaurants
 async function getUsersFavorites(userId: string) {
   const docRef = doc(db, "users", userId);
   const docSnap = await getDoc(docRef);
@@ -261,7 +260,7 @@ async function getUsersFavorites(userId: string) {
   }
 }
 
-//funkcija za dodavanje lokala u favorites
+//function for adding restaurant to favorites
 async function addToFavorites(userId: string, localData: Local) {
   const favoritesRef = doc(db, "users", userId);
   console.log(userId, localData);
@@ -270,7 +269,7 @@ async function addToFavorites(userId: string, localData: Local) {
   });
 }
 
-//funkcija za uklanjanje lokala iz favorites
+//function for removing restaurant from favorites
 async function removeFromFavorites(userId: string, localData: Local) {
   const favoritesRef = doc(db, "users", userId);
   await updateDoc(favoritesRef, {

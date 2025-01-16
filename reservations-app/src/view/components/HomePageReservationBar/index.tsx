@@ -60,7 +60,7 @@ function HomePageReservationBar() {
     }
 
     return (
-        <motion.div className='w-9/12 flex p-5 shadow flex justify-around items-center rounded 2xl:w-10/12 xl:gap-6 md:mt-10 md:flex-wrap md:justify-around md:pl-5 md:relative' variants={reservationBarVariants} initial="hidden" animate="animate">
+        <motion.div className='w-9/12 flex p-5 shadow justify-around items-center rounded 2xl:w-10/12 xl:gap-6 md:mt-10 md:flex-wrap md:justify-around md:pl-5 md:relative' variants={reservationBarVariants} initial="hidden" animate="animate">
             <ReservationLocation handleReservationLocation={(newValue: any) => handleReservationLocation(newValue)} reservationLocation={reservationLocation} locationOptions={locationOptions} />
             <ReservationDate reservationDate={reservationDate} handleReservationDate={(newValue: any) => handleReservationDate(newValue)} />
             <ReservationTime reservationTime={reservationTime} reservationDate={reservationDate} handleReservationTime={(newValue: any) => handleReservationTime(newValue)} workingHours={workingHours} />
